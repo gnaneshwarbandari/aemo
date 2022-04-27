@@ -25,16 +25,19 @@ while True:
             print("Demand: "+str(region['TOTALDEMAND']))
             print("Flow: "+str(flow))
     print(datetime.datetime.now())
-   
+
     text = ""
-   
-    if flow > 500:
+    if flow > 100:
         text = "red"
     elif price < 0:
         text = "blue"
     elif flow < 0:
         text = "green"
-   
+    elif price > 0:
+        text = "off"
+    elif flow < 400 and flow > 0:
+        text = "off"
+
     if text != "":
         print(text)
         text1 = text.encode("ascii")
@@ -44,8 +47,6 @@ while True:
             "port": 1,
             "confirmed": False
         }
-        text = requests.post('https://console.helium.com/api/v1/down/fa7b2bb7-a598-4b8d-880c-86713f64d4ab/mApsTRAIg4eb4Y4ClomfbY0Ka75_6kQC/dc1d764c-4542-4d51-b46e-4f52807015f0', data=payload)
+        text = requests.post('https://console.helium.com/api/v1/down/fa7b2bb7-a598-4b8d-880c-86713f64d4ab/mApsTRAIg4eb4Y4ClomfbY0Ka75_6kQC', data=payload)
         print(text)
-       
-       
     time.sleep(150)
